@@ -28,10 +28,36 @@ main() {
             exit 1
         fi
         rm -rf "${TMP}"
+    elif file "${INPUT}" | grep --quiet "JSON data"; then
+        if [[ "$(basename -- ${INPUT})" == "subscriptions.db" ]]; then # FreeTube (before the 2020 rewrite)
+            freetube_to_opml "${INPUT}"
+        else
+            >&2 echo "Error couldn't identify the given database by its file name (make sure to keep the original file name)!"
+            exit 1
+        fi
+        rm -rf "${TMP}"
     else
         >&2 echo "Error unknown input format!"
         exit 1
     fi
+}
+
+freetube_to_opml() {
+    DATABASE="$1"
+    
+    echo '<opml version="1.1">'
+    echo '    <body>'
+    echo '        <outline text="YouTube Subscriptions" title="YouTube Subscriptions">'
+
+    while read json; do
+        channel_name="$(echo "$json" | jq -r .channelName)"
+        channel_url="https://www.youtube.com/feeds/videos.xml?channel_id=$(echo "$json" | jq -r .channelId)"
+        echo "            <outline text=\"${channel_name}\" title=\"${channel_name}\" type=\"rss\" xmlUrl=\"${channel_url}\" />"
+    done <"$DATABASE"
+
+    echo '        </outline>'
+    echo '    </body>'
+    echo '</opml>'
 }
 
 newpipe_to_opml() {

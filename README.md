@@ -18,9 +18,10 @@ bash subscriptions-extractor.sh path/to/your/inputfile > output.xml
 
 `path/to/your/inputfile` can be a path to one of these:
 
-- `NewPipeData-........zip`
-- `skytube-...............skytube`
-- `subs.db`
-- `newpipe.db`
+- `sbscriptions.db` (FreeTube before the 2020 rewrite)
+- `NewPipeData-........zip` (NewPipe)
+- `skytube-...............skytube` (Skytube)
+- `subs.db` (Skytube)
+- `newpipe.db` (NewPipe)
 
 `output.xml` is the file to which is created or overwritten and will contain all your subscriptions in the youtube xml format.
