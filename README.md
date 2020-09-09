@@ -2,9 +2,9 @@
 
 ## Requirements
 
-On Linux and Mac OS, you need to install `git`, `unzip` and `sqlite3`.
-On Android you need to install Termux and in Termux you then need to install `git`, `unzip` and `sqlite3`.
-On Windows you need to enable the Ubuntu subsystem and then install `git`, `unzip` and `sqlite3` from there.
+On Linux and Mac OS, you need to install `git`, `unzip`, `sqlite3` and `jq`.
+On Android you need to install Termux and in Termux you then need to install `git`, `unzip`, `sqlite3` and `jq`.
+On Windows you need to enable the Ubuntu subsystem and then install `git`, `unzip`, `sqlite3` and `jq` from there.
 
 ## Usage
 
